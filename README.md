@@ -1,3 +1,3 @@
-# Telegram Echo Bot
+# Line Echo Bot
 
-This is a sample Telegram Bot written in PHP running on Heroku
+This is a sample Line Bot written in PHP running on Heroku
