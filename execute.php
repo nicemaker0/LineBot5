@@ -57,3 +57,4 @@ switch($value) {
 }	
  
 return $content_type;
+}
