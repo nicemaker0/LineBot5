@@ -12,6 +12,8 @@ $content_type = $receive->result[0]->content->contentType;
 /* 返信 */
 $header = ["Content-Type: application/json; charser=UTF-8", "X-Line-ChannelID:" . $channel_id, "X-Line-ChannelSecret:" . $channel_secret, "X-Line-Trusted-User-With-ACL:" . $mid];
 $message = getContentType($content_type);
+
+$message = "你號";
 sendMessage($header, $from, $message);
  
 /* メッセージを送る */
