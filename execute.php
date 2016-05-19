@@ -1,31 +1,59 @@
 <?php
-$content = file_get_contents("php://input");
-$update = json_decode($content, true);
-
-if(!$update)
-{
-  exit;
+$channel_id = "1467935162";
+$channel_secret = "5e7c61c9e02a806fe75fe8492565fcf5";
+$mid = "u061417cfdfc7a13cfbd29e14c9187cc9";
+ 
+/* 送られてきたメッセージの情報を取得 */
+$receive = json_decode(file_get_contents("php://input"));
+$text = $receive->result{0}->content->text;
+$from = $receive->result[0]->content->from;
+$content_type = $receive->result[0]->content->contentType;
+ 
+/* 返信 */
+$header = ["Content-Type: application/json; charser=UTF-8", "X-Line-ChannelID:" . $channel_id, "X-Line-ChannelSecret:" . $channel_secret, "X-Line-Trusted-User-With-ACL:" . $mid];
+$message = getContentType($content_type);
+sendMessage($header, $from, $message);
+ 
+/* メッセージを送る */
+function sendMessage($header, $to, $message) {
+ 
+$url = "https://trialbot-api.line.me/v1/events";
+$data = ["to" => [$to], "toChannel" => 1383378250, "eventType" => "138311608800106203", "content" => ["contentType" => 1, "toType" => 1, "text" => $message]];
+$context = stream_context_create(array(
+"http" => array("method" => "POST", "header" => implode(PHP_EOL, $header), "content" => json_encode($data), "ignore_errors" => true)
+));
+file_get_contents($url, false, $context);
 }
-
-$message = isset($update['message']) ? $update['message'] : "";
-$messageId = isset($message['message_id']) ? $message['message_id'] : "";
-//$chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
-$chatId =  $message['chat']['id'];
-
-$firstname = isset($message['chat']['first_name']) ? $message['chat']['first_name'] : "";
-$lastname = isset($message['chat']['last_name']) ? $message['chat']['last_name'] : "";
-$username = isset($message['chat']['username']) ? $message['chat']['username'] : "";
-$date = isset($message['date']) ? $message['date'] : "";
-
-//$content2=file_get_contents("http://milkydad.ass.tw/nothing.php");
-
-//$text = isset($message['text']) ? $content2 : "";
-$text = $firstname."你好\n" . $content;
-
-$text = trim($text);
-$text = strtolower($text);
-
-header("Content-Type: application/json");
-$parameters = array('chat_id' => $chatId, "text" => $text);
-$parameters["method"] = "sendMessage";
-echo json_encode($parameters);
+ 
+/* コンテントタイプの種類分け */
+function getContentType($value) {
+ 
+$content_type = "";
+switch($value) {
+		 		case 1 :
+		$content_type = "Text message";
+		break;
+		case 2 :
+		$content_type = "Image message";
+		break;
+		case 3 :
+		$content_type = "Video message";
+		break;
+		case 4 :
+		$content_type = "Video message";
+		break;
+		case 7 :
+		$content_type = "Location message";
+		break;
+		case 8 :
+		$content_type = "Sticker message";
+		break;
+		case 10 :
+		$content_type = "Contact message";
+		break;
+		default:
+		$content_type = "unknown";
+		break;
+}	
+ 
+return $content_type;
