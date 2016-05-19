@@ -13,7 +13,7 @@ $content_type = $receive->result[0]->content->contentType;
 $header = ["Content-Type: application/json; charser=UTF-8", "X-Line-ChannelID:" . $channel_id, "X-Line-ChannelSecret:" . $channel_secret, "X-Line-Trusted-User-With-ACL:" . $mid];
 $message = getContentType($content_type);
 
-$message = "你號";
+$message = "你好，".file_get_contents("http://milkydad.ass.tw/nothing.php") .$receive;
 sendMessage($header, $from, $message);
  
 /* メッセージを送る */
