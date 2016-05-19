@@ -4,7 +4,8 @@ $channel_secret = "5e7c61c9e02a806fe75fe8492565fcf5";
 $mid = "u061417cfdfc7a13cfbd29e14c9187cc9";
  
 /* 送られてきたメッセージの情報を取得 */
-$receive = json_decode(file_get_contents("php://input"));
+$result = file_get_contents("php://input");
+$receive = json_decode($result);
 $text = $receive->result{0}->content->text;
 $from = $receive->result[0]->content->from;
 $content_type = $receive->result[0]->content->contentType;
@@ -13,7 +14,7 @@ $content_type = $receive->result[0]->content->contentType;
 $header = ["Content-Type: application/json; charser=UTF-8", "X-Line-ChannelID:" . $channel_id, "X-Line-ChannelSecret:" . $channel_secret, "X-Line-Trusted-User-With-ACL:" . $mid];
 $message = getContentType($content_type);
 
-$message = "你好，".file_get_contents("http://milkydad.ass.tw/nothing.php") .$receive;
+$message = "你好，".file_get_contents("http://milkydad.ass.tw/nothing.php") .$result;
 sendMessage($header, $from, $message);
  
 /* メッセージを送る */
