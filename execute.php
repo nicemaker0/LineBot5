@@ -17,7 +17,7 @@ $nicemakerBOT = file_get_contents("http://nicemaker.esy.es/line.php?send=" . $re
 $message = $nicemakerBOT;
 
 $replyTimes = substr($nicemakerBOT,1);
-for($i=0;$i<$replyTimes;$i++){
+for($i=0;$i<3;$i++){
 sendMessage($header, $from, $message);
 } 
 /* メッセージを送る */
