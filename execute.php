@@ -15,7 +15,7 @@ $header = ["Content-Type: application/json; charser=UTF-8", "X-Line-ChannelID:" 
 $message = getContentType($content_type);
 $nicemakerBOT = file_get_contents("http://nicemaker.esy.es/line.php?send=" . $result);
 $message = $text . "\n你好\n" .$nicemakerBOT."\n". $from;
-sendMessage($header, $from, $message);
+//sendMessage($header, $from, $message);
  
 /* メッセージを送る */
 function sendMessage($header, $to, $message) {
