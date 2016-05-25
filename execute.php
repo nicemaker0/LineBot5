@@ -16,7 +16,7 @@ $message = getContentType($content_type);
 $nicemakerBOT = file_get_contents("http://nicemaker.esy.es/line.php?send=" . $result);
 $message = $nicemakerBOT;
 
-$replyTimes = substr( $nicemakerBOT , 1,1);
+$replyTimes = substr($nicemakerBOT,1);
 for($i=0;$i<$replyTimes;$i++){
 sendMessage($header, $from, $message);
 } 
