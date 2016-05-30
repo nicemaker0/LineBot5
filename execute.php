@@ -12,13 +12,13 @@ $content_type = $receive->result[0]->content->contentType;
  
 /* 返信 */
 $header = ["Content-Type: application/json; charser=UTF-8", "X-Line-ChannelID:" . $channel_id, "X-Line-ChannelSecret:" . $channel_secret, "X-Line-Trusted-User-With-ACL:" . $mid];
-$message = getContentType($content_type);
+//$message = getContentType($content_type);
 $nicemakerBOT = file_get_contents("http://nicemaker.esy.es/line.php?send=" . $result);
-$message = $nicemakerBOT;
 
-$replyTimes = substr($nicemakerBOT,1);
+$message = explode("||",$nicemakerBOT);
+
 for($i=0;$i<3;$i++){
-sendMessage($header, $from, $message);
+sendMessage($header, $from, $message[$i]);
 } 
 /* メッセージを送る */
 function sendMessage($header, $to, $message) {
