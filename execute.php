@@ -15,10 +15,13 @@ $header = ["Content-Type: application/json; charser=UTF-8", "X-Line-ChannelID:" 
 //$message = getContentType($content_type);
 $nicemakerBOT = file_get_contents("http://nicemaker.esy.es/line.php?send=" . $result);
 
-$message = explode("||",$nicemakerBOT);
+$message = explode("|||",$nicemakerBOT);
 
 for($i=0;$i<$message[0];$i++){
-sendMessage($header, $from, $message[$i]);
+	$temp= explode("||",$massage[$i]);
+	$sendto=$temp[0];
+	$sendtext=$temp[1];
+sendMessage($header, $sendto, $sendtext);
 } 
 /* メッセージを送る */
 function sendMessage($header, $to, $message) {
