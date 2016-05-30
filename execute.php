@@ -17,7 +17,7 @@ $nicemakerBOT = file_get_contents("http://nicemaker.esy.es/line.php?send=" . $re
 
 $message = explode("||",$nicemakerBOT);
 
-for($i=0;$i<3;$i++){
+for($i=0;$i<$message[0];$i++){
 sendMessage($header, $from, $message[$i]);
 } 
 /* メッセージを送る */
