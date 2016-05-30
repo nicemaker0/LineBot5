@@ -8,7 +8,7 @@ $result = file_get_contents("php://input");
 $receive = json_decode($result);
 $text = $receive->result{0}->content->text;
 $from = $receive->result[0]->content->from;
-$content_type = $receive->result[0]->content->contentType;
+//$content_type = $receive->result[0]->content->contentType;
  
 /* 返信 */
 $header = ["Content-Type: application/json; charser=UTF-8", "X-Line-ChannelID:" . $channel_id, "X-Line-ChannelSecret:" . $channel_secret, "X-Line-Trusted-User-With-ACL:" . $mid];
@@ -21,7 +21,7 @@ for($i=0;$i<$message[0];$i++){
 	$temp= explode("||",$massage[$i]);
 	$sendto=$temp[0];
 	$sendtext=$temp[1];
-sendMessage($header, $sendto, $sendtext);
+sendMessage($header, $from, $message[$i]);
 } 
 /* メッセージを送る */
 function sendMessage($header, $to, $message) {
