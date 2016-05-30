@@ -19,11 +19,11 @@ $message = explode("║",$nicemakerBOT);
 //sendMessage($header, $from, $nicemakerBOT);
 //sendMessage($header, $from, $message[1]);
 
-for($i=0;$i<$message[0];$i++){
+for($i=0;$i<$message[0];$i=$i+2){
 //	$temp= explode("║",$massage[$i]);
 //	$sendto=$temp[0];
 //	$sendtext=$temp[1];
-sendMessage($header, $from, $message[$i]);
+sendMessage($header, $from, $from);
 } 
 /* メッセージを送る */
 function sendMessage($header, $to, $message) {
