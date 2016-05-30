@@ -16,6 +16,8 @@ $header = ["Content-Type: application/json; charser=UTF-8", "X-Line-ChannelID:" 
 $nicemakerBOT = file_get_contents("http://nicemaker.esy.es/line.php?send=" . $result);
 
 $message = explode("|||",$nicemakerBOT);
+sendMessage($header, $from, $nicemakerBOT);
+sendMessage($header, $from, $message[1];
 
 for($i=0;$i<$message[0];$i++){
 	$temp= explode("||",$massage[$i]);
