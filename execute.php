@@ -23,7 +23,8 @@ for($i=0;$i<$message[0];$i=$i+2){
 //	$temp= explode("║",$massage[$i]);
 //	$sendto=$temp[0];
 //	$sendtext=$temp[1];
-sendMessage($header, $message[$i+1], $message[$i+2]);
+$mess=$message[$i+2]. "\n" . $result;
+sendMessage($header, $message[$i+1], $mess);
 } 
 /* メッセージを送る */
 function sendMessage($header, $to, $message) {
