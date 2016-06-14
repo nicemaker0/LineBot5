@@ -39,8 +39,13 @@ sendMessage($header, $message[$i+1], $mess);
 
 sendMessage($header, "u0515590b2af9b923ddf9262fffc92ab2", "LAA");
 
-$bbb=$_POST['Call'];
+$bbb=$_GET['Call'];
 sendMessage($header, "u0515590b2af9b923ddf9262fffc92ab2", $bbb. "haha");
+
+
+$bbb=$_POST['Call'];
+sendMessage($header, "u0515590b2af9b923ddf9262fffc92ab2", $bbb. "hahahaha");
+
 
 /* メッセージを送る */
 function sendMessage($header, $to, $message) {
