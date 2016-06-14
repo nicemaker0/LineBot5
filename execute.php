@@ -3,12 +3,21 @@ $channel_id = "1467935162";
 $channel_secret = "5e7c61c9e02a806fe75fe8492565fcf5";
 $mid = "u061417cfdfc7a13cfbd29e14c9187cc9";
  
+ 
 /* 送られてきたメッセージの情報を取得 */
 $result = file_get_contents("php://input");
+ if($_POST['Call'])
+ {
+	$result= $_POST['Call'];
+ 	
+ }
+
+
 $receive = json_decode($result);
 $text = $receive->result{0}->content->text;
 $from = $receive->result[0]->content->from;
 //$content_type = $receive->result[0]->content->contentType;
+ 
  
 /* 返信 */
 $header = ["Content-Type: application/json; charser=UTF-8", "X-Line-ChannelID:" . $channel_id, "X-Line-ChannelSecret:" . $channel_secret, "X-Line-Trusted-User-With-ACL:" . $mid];
@@ -23,7 +32,7 @@ for($i=0;$i<$message[0];$i=$i+2){
 //	$temp= explode("║",$massage[$i]);
 //	$sendto=$temp[0];
 //	$sendtext=$temp[1];
-$mess=$message[$i+2]. "\n" . $result;
+$mess=$message[$i+2]; //. "\n" . $result;
 sendMessage($header, $message[$i+1], $mess);
 } 
 /* メッセージを送る */
