@@ -11,6 +11,7 @@ $result = file_get_contents("php://input");
 	$result= $_POST['Call'];
  	
  }
+	
 
 
 $receive = json_decode($result);
@@ -35,6 +36,8 @@ for($i=0;$i<$message[0];$i=$i+2){
 $mess=$message[$i+2]; //. "\n" . $result;
 sendMessage($header, $message[$i+1], $mess);
 } 
+
+sendMessage($header, "u0515590b2af9b923ddf9262fffc92ab2", "LAA");
 /* メッセージを送る */
 function sendMessage($header, $to, $message) {
  
