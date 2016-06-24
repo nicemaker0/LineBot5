@@ -40,7 +40,7 @@ sendMessage($header, $message[$i+1], $mess);
 $bbb=$_GET['Call'];
 if($bbb)
 {
-sendMessage($header, "u0515590b2af9b923ddf9262fffc92ab2", $bbb. "haha");
+sendMessage($header, "u0515590b2af9b923ddf9262fffc92ab2", $bbb);
 }
 
 
